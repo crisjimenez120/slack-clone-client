@@ -1,7 +1,7 @@
 import React from 'react';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Button, Input, Container, Header } from 'semantic-ui-react';
+import { Form, Button, Input, Container, Header } from 'semantic-ui-react';
 import {gql, graphql} from 'react-apollo';
 
 
@@ -27,7 +27,7 @@ import {gql, graphql} from 'react-apollo';
       }
     };
 
-    onChange = e => {
+    onChange = (e) => {
       const { name, value } = e.target;
       this[name] = value;
     };
@@ -38,7 +38,17 @@ import {gql, graphql} from 'react-apollo';
       return (
         <Container text>
           <Header as="h2">Login</Header>
-          <Input name="email" onChange={this.onChange} value={email} placeholder="Email" fluid />
+          <Form>
+          <Form.Field>
+          <Input 
+            name="email" 
+            onChange={this.onChange} 
+            value={email} 
+            placeholder="Email" 
+            fluid 
+            />
+            </Form.Field>
+            <Form.Field>
           <Input
             name="password"
             onChange={this.onChange}
@@ -47,7 +57,11 @@ import {gql, graphql} from 'react-apollo';
             placeholder="Password"
             fluid
           />
+          </Form.Field>
+
+          
           <Button onClick={this.onSubmit}>Submit</Button>
+          </Form>
         </Container>
       );
     }
